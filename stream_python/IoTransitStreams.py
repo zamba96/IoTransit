@@ -16,7 +16,7 @@ vars = [[]]
 try:
     producer = KafkaProducer(bootstrap_servers=kafkaServer)
 except:
-    print("Kafka Server Not Found")
+    print('Kafka Server Not Found on {}'.format(kafkaServer))
 
 
 def main():
@@ -42,7 +42,7 @@ def init_consumer():
             # print('{}:{}'.format(key, value))
             map[key] = value
     except:
-        print("Kafka Server Not Found")
+        print('Kafka Server Not Found on {}'.format(kafkaServer))
 
 
 def sendMain(msg):
@@ -52,7 +52,7 @@ def sendMain(msg):
                       value=msg)
         producer.flush()
     except:
-        print("Kafka Server Not Found")
+        print('Kafka Server Not Found on {}'.format(kafkaServer))
 
 
 def drawGUI():
