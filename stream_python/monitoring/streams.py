@@ -1,5 +1,6 @@
 import threading
 from kafka import KafkaConsumer
+import random as rd
 
 map = {-1: 1}
 kafkaServer = 'localhost:9092'
@@ -19,7 +20,11 @@ def init_consumer():
         print('Kafka Server Not Found on {}'.format(kafkaServer))
 
 
+def alterRandMap():
+    map[-1] = rd.randint(0, 100)
+
+
 def otherMain():
-    if started:
+    if not started:
         threading.Thread(target=init_consumer, daemon=True).start()
     return map
