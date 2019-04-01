@@ -36,7 +36,7 @@ public class Sensor {
 		return lastReading;
 	}
 
-	public void setLastReadings(Reading lastReadings) {
+	public void setLastReadings(Reading lastReading) {
 		this.lastReading = lastReading;
 	}
 	

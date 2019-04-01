@@ -8,7 +8,7 @@ public class LiveTable {
 
 	private Hashtable<Long, Sensor> tabla;
 
-	private Hashtable<Long, Integer> qTabla;
+	//private Hashtable<Long, Integer> qTabla;
 
 	/**
 	 * numero de sensores
@@ -23,35 +23,28 @@ public class LiveTable {
 	public LiveTable(int n) {
 		this.n = n;
 		tabla = new Hashtable<Long, Sensor>(n);
-		qTabla = new Hashtable<Long, Integer>(n);
 
 	}
 
 
-	//	public boolean agregarSensor(Sensor s) {
-	//		if(tabla.get(s.getId()) != null)
-	//			return false;
-	//		
-	//		tabla.put(s.getId(), s);
-	//		return true;
-	//	}
-	//	
-	//	public void actualizarReading(Reading r, Long id) throws Exception {
-	//		Sensor s = tabla.get(id);
-	//		if(s == null)
-	//			throw new Exception("No existe el sensor con el Id: " + id);
-	//		s.setLastReadings(r);
-	//	}
+	public boolean agregarSensor(Sensor s) {
+		if(tabla.get(s.getId()) != null)
+			return false;
 
+		tabla.put(s.getId(), s);
+		return true;
+	}
+	
 
-	public Integer getReading(Long id) {
-		return qTabla.get(id);
+	public void actualizarReading(Reading r) throws Exception {
+		Sensor s = tabla.get(r.getSensorId());
+		if(s == null)
+			throw new Exception("No existe el sensor con el Id: " + r.getSensorId());
+		s.setLastReadings(r);
 	}
 
-	public Collection<Integer> getAllReadings() {
-		return qTabla.values();
 
-	}
+
 
 }
 
