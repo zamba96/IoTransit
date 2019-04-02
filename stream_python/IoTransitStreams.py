@@ -26,7 +26,7 @@ try:
 except (Exception, psycopg2.Error) as error:
     print("Error while connecting to PostgreSQL", error)
 
-kafkaServer = 'localhost:9092'
+kafkaServer = '54.149.247.97:9092'
 
 map = {-1: 1}
 top = tk.Tk()
@@ -50,6 +50,7 @@ def main():
         # print(map)
         js = json.dumps(map)
         sendMain(js)
+        saveRecord(js)
         time.sleep(1)
 
 
@@ -67,12 +68,16 @@ def init_consumer():
 
 
 def sendMain(msg):
-    print(msg)
+    # print(msg)
     id = int(time.time())
     producer.send('liveData', key=id.to_bytes(4, byteorder='little'),
                   value=msg)
     producer.flush()
     # print('SendMain: Kafka Server Not Found on {}'.format(kafkaServer))
+
+
+def saveRecord(record):
+    print(saving:)
 
 
 if __name__ == '__main__':

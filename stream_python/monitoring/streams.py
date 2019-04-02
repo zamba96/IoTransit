@@ -3,8 +3,8 @@ from kafka import KafkaConsumer
 import random as rd
 import json
 
-map = {-1: 1}
-kafkaServer = 'localhost:9092'
+map = {-1: -1}
+kafkaServer = '54.149.247.97:9092'
 started = False
 
 
@@ -29,10 +29,13 @@ def init_consumer2():
                                  json.loads(v).encode('utf-8'))
         for msg in consumer:
             a = json.loads(msg.value)
-            print(a)
+            # print(a)
             map.clear()
             for (x, y) in a.items():
                 map[x] = y
+            ts = int.from_bytes(msg.key, byteorder='little')
+            # print(ts)
+            map['timestamp'] = ts
     except:
         print('Kafka Server Not Found on {}'.format(kafkaServer))
 
