@@ -1,3 +1,4 @@
+from cv2 import *
 import cv2
 import sys
 import numpy as np
@@ -14,12 +15,11 @@ ap.add_argument("-p", "--prototxt", type=str,
 ap.add_argument("-m", "--model", type = str, default = "MobileNetSSD_deploy.caffemodel",
                 help="path to Caffe pre-trained model")
 ap.add_argument("-i", "--input", type=str,
-                help="path to optional input video file")
+                help="path to optional input image file")
 ap.add_argument("-c", "--confidence", type=float, default=0.7,
                 help="minimum probability to filter weak detections")
 args = vars(ap.parse_args())
 
-imagePath = args["input"]
 # protoPath = sys.argv[2]
 # modelPath = sys.argv[3]
 
@@ -44,8 +44,17 @@ print("[INFO] loading model...")
 # net = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
 net = cv2.dnn.readNetFromCaffe(proto, model)
 print("[INFO] loading Image...")
+
 # Read the image
-image = cv2.imread(imagePath)
+if not args.get("input", False):
+    print("[INFO] starting image stream...")
+    cam = VideoCapture(0)
+    s, image = cam.read()
+    imagePath = "nuevaImg.jpg"
+else:
+    print("[INFO] opening image file...")
+    imagePath = args["input"]
+    image = cv2.imread(imagePath)
 
 size = image.shape
 
@@ -57,7 +66,7 @@ img4 = image[round(size[0]/2):size[0], round(size[1] / 2):size[1]]
 imgenes = [img1, img2, img3, img4]
 blobs = []
 for im in imgenes:
-    
+
     gray = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
     print("[INFO] Image Size:" + format(im.shape[:2]))
     (h, w) = im.shape[:2]
@@ -88,7 +97,7 @@ for pBlob in blobs:
         # extract the confidence (i.e., probability) associated with the
         # prediction
         confidence = detections[0, 0, i, 2]
-        
+
         # filter out weak detections by ensuring the `confidence` is
         # greater than the minimum confidence
         if confidence > minConf:
@@ -100,9 +109,9 @@ for pBlob in blobs:
                 continue
             box = detections[0, 0, i, 3:7] * np.array([W, H, W, H])
             (startX, startY, endX, endY) = box.astype("int")
-            
+
             j+=1
-            
+
             # display the prediction
             #label = ":{:.1f}%".format(confidence * 100)
             label = "{}:{:.1f}%".format(CLASSES[idx],confidence * 100)
@@ -119,7 +128,7 @@ for pBlob in blobs:
             elif l ==4:
                 sum1 = round(size[0]/2)
                 sum2 = round(size[1]/2)
-                
+
             cv2.rectangle(image, (startX + sum2, startY + sum1), (endX +sum2, endY + sum1),
                           (0, 0, 255), 1)
             y = startY - 15 +sum1 if startY - 15 +sum1 > 15 else startY + 15 +sum1
@@ -132,3 +141,10 @@ print("Found {0} persons!".format(j))
 print("/pic/OUTPUT_" + imagePath.split(os.sep)[len(imagePath.split(os.sep))-1])
 cv2.imwrite("./pic/OUTPUT__"+imagePath.split(os.sep)[len(imagePath.split(os.sep))-1], image)
 cv2.waitKey(0)
+
+# if we are not using a video file, stop the camera video stream
+if not args.get("input", False):
+	vs.stop()
+
+# close any open windows
+cv2.destroyAllWindows()
