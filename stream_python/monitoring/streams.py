@@ -1,6 +1,7 @@
 import threading
 from kafka import KafkaConsumer
 import random as rd
+import json
 
 map = {-1: 1}
 kafkaServer = 'localhost:9092'
@@ -20,11 +21,31 @@ def init_consumer():
         print('Kafka Server Not Found on {}'.format(kafkaServer))
 
 
+def init_consumer2():
+    try:
+        consumer = KafkaConsumer('liveData',
+                                 bootstrap_servers=kafkaServer,
+                                 value_deserializer=lambda v:
+                                 json.loads(v).encode('utf-8'))
+        for msg in consumer:
+            a = json.loads(msg.value)
+            print(a)
+            map.clear()
+            for (x, y) in a.items():
+                map[x] = y
+    except:
+        print('Kafka Server Not Found on {}'.format(kafkaServer))
+
+
 def alterRandMap():
     map[-1] = rd.randint(0, 100)
 
 
 def otherMain():
-    if not started:
-        threading.Thread(target=init_consumer, daemon=True).start()
+    global started
+    if started is False:
+        started = True
+        # threading.Thread(target=init_consumer, daemon=True).start()
+        threading.Thread(target=init_consumer2, daemon=True).start()
+
     return map

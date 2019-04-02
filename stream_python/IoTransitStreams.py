@@ -6,6 +6,25 @@ from kafka import KafkaProducer
 # import numpy as np
 import tkinter as tk
 import json
+import psycopg2
+
+# PostgreSQL connection
+connection = None
+try:
+    connection = psycopg2.connect(user="zamba",
+                                  password="",
+                                  host="localhost",
+                                  port="5432",
+                                  database="iotransit")
+    cursor = connection.cursor()
+    # Print PostgreSQL Connection properties
+    print(connection.get_dsn_parameters(), "\n")
+    # Print PostgreSQL version
+    cursor.execute("SELECT version();")
+    record = cursor.fetchone()
+    print("You are connected to - ", record, "\n")
+except (Exception, psycopg2.Error) as error:
+    print("Error while connecting to PostgreSQL", error)
 
 kafkaServer = 'localhost:9092'
 
@@ -14,9 +33,11 @@ top = tk.Tk()
 labels = [[]]
 vars = [[]]
 try:
-    producer = KafkaProducer(bootstrap_servers=kafkaServer)
+    producer = KafkaProducer(bootstrap_servers=kafkaServer,
+                             value_serializer=lambda x:
+                             json.dumps(x).encode('utf-8'))
 except:
-    print('Kafka Server Not Found on {}'.format(kafkaServer))
+    print('Producer: Kafka Server Not Found on {}'.format(kafkaServer))
 
 
 def main():
@@ -29,12 +50,12 @@ def main():
         # print(map)
         js = json.dumps(map)
         sendMain(js)
-        time.sleep(2)
+        time.sleep(1)
 
 
 def init_consumer():
     try:
-        consumer = KafkaConsumer('test',
+        consumer = KafkaConsumer('input',
                                  bootstrap_servers=kafkaServer)
         for msg in consumer:
             value = int.from_bytes(msg.value, byteorder='little')
@@ -42,51 +63,16 @@ def init_consumer():
             # print('{}:{}'.format(key, value))
             map[key] = value
     except:
-        print('Kafka Server Not Found on {}'.format(kafkaServer))
+        print('Cosumer: Kafka Server Not Found on {}'.format(kafkaServer))
 
 
 def sendMain(msg):
     print(msg)
-    try:
-        producer.send('liveData', key='timestamp',
-                      value=msg)
-        producer.flush()
-    except:
-        print('Kafka Server Not Found on {}'.format(kafkaServer))
-
-
-def drawGUI():
-
-    for k, v in map.items():
-        sk = tk.StringVar(top)
-        sv = tk.StringVar(top)
-        sk.set('{}'.format(k))
-        sv.set('{}'.format(v))
-        varRow = [sk, sv]
-        lk = tk.Label(top, text=sk)
-        lv = tk.Label(top, text=sv)
-        row = [lk, lv]
-        labels.append(row)
-        vars.append(varRow)
-        print(vars)
-    r = 0
-    c = 0
-    for row in labels:
-        for col in row:
-            col.grid(row=r, column=c)
-            c += 1
-            if c == 2:
-                r += 1
-                c = 0
-
-    top.mainloop()
-
-
-def refreshGUI():
-    print("test")
-    for row in labels:
-        for col in row:
-            col.set
+    id = int(time.time())
+    producer.send('liveData', key=id.to_bytes(4, byteorder='little'),
+                  value=msg)
+    producer.flush()
+    # print('SendMain: Kafka Server Not Found on {}'.format(kafkaServer))
 
 
 if __name__ == '__main__':
