@@ -26,6 +26,8 @@ numSensores = int(sys.argv[1])
 
 if numSensores == -1:
     st = "DROP TABLE lecturas"
+if numSensores == -2:
+    st = "DELETE FROM lecturas"
 else:
     st = '''CREATE TABLE lecturas(TS INT PRIMARY KEY NOT NULL'''
     for i in range(numSensores):
@@ -34,3 +36,7 @@ else:
 print(st)
 cursor.execute(st)
 connection.commit()
+
+
+cursor.close()
+connection.close()

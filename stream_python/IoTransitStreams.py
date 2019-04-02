@@ -10,6 +10,7 @@ import psycopg2
 
 # PostgreSQL connection
 connection = None
+cursor = None
 try:
     connection = psycopg2.connect(user="zamba",
                                   password="",
@@ -41,7 +42,7 @@ except:
 
 
 def main():
-    n = 8
+    n = 31
     for i in range(n):
         map[i] = -1
     threading.Thread(target=init_consumer, daemon=True).start()
@@ -49,8 +50,8 @@ def main():
     while(True):
         # print(map)
         js = json.dumps(map)
-        sendMain(js)
-        saveRecord(js)
+        id = sendMain(js)
+        saveRecord(map, id)
         time.sleep(1)
 
 
@@ -73,11 +74,23 @@ def sendMain(msg):
     producer.send('liveData', key=id.to_bytes(4, byteorder='little'),
                   value=msg)
     producer.flush()
+    return id
     # print('SendMain: Kafka Server Not Found on {}'.format(kafkaServer))
 
 
-def saveRecord(record):
-    print(saving:)
+def saveRecord(record, ts):
+    st = "INSERT INTO lecturas VALUES (\n{}".format(ts)
+    flag = True
+    for k, v in record.items():
+        if k != -1 and v != -1:
+            st += ",\n{}".format(v)
+        if v == -1:
+            flag = False
+    st += ");"
+    # print(st)
+    if flag:
+        cursor.execute(st)
+        connection.commit()
 
 
 if __name__ == '__main__':
