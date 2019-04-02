@@ -12,9 +12,9 @@ import psycopg2
 connection = None
 cursor = None
 try:
-    connection = psycopg2.connect(user="zamba",
-                                  password="",
-                                  host="localhost",
+    connection = psycopg2.connect(user="postgres",
+                                  password="12345",
+                                  host="54.149.247.97",
                                   port="5432",
                                   database="iotransit")
     cursor = connection.cursor()
