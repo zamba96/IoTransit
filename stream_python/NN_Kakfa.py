@@ -8,6 +8,42 @@ from tensorflow.keras import layers
 from tensorflow import keras
 import time
 import argparse
+import psycopg2
+
+
+connection = None
+cursor = None
+try:
+    connection = psycopg2.connect(user="postgres",
+                                  password="12345",
+                                  host="54.149.247.97",
+                                  port="5432",
+                                  database="iotransit")
+    cursor = connection.cursor()
+    # Print PostgreSQL Connection properties
+    print(connection.get_dsn_parameters(), "\n")
+    # Print PostgreSQL version
+    cursor.execute("SELECT version();")
+    record = cursor.fetchone()
+    print("You are connected to - ", record, "\n")
+except (Exception, psycopg2.Error) as error:
+    print("Error while connecting to PostgreSQL", error)
+
+
+def saveRecord(record, ts):
+    st = "INSERT INTO pred VALUES (\n{}".format(ts)
+    flag = True
+    for k, v in record.items():
+        if k != -1 and v != -1:
+            st += ",\n{}".format(v)
+        if v == -1:
+            flag = False
+    st += ");"
+    # print(st)
+    if flag:
+        cursor.execute(st)
+        connection.commit()
+
 
 parser = argparse.ArgumentParser(description='Arg Parser')
 parser.add_argument(
@@ -48,7 +84,10 @@ numSensores = 31
 def predict():
     batch = pd.DataFrame.from_dict(map, orient='index')
     batch = batch.transpose()
-    batch = batch.drop(columns='-1')
+    try:
+        batch = batch.drop(columns='-1')
+    except:
+        print('.')
     # print(batch)
     result = model.predict(batch)
     # print(result)
@@ -74,11 +113,17 @@ def createModel():
 def miniTrain():
     train = pd.DataFrame.from_dict(lastMap, orient='index')
     train = train.transpose()
-    train = train.drop(columns='-1')
+    try:
+        train = train.drop(columns='-1')
+    except:
+        print('.')
 
     label = pd.DataFrame.from_dict(lastMap, orient='index')
     label = label.transpose()
-    label = label.drop(columns='-1')
+    try:
+        label = label.drop(columns='-1')
+    except:
+        print('')
 
     model.fit(
         train, label,
@@ -142,10 +187,13 @@ for msg in consumer:
     i = 0
     for p in prediction[0]:
         d_pred[i] = float(p)
+        # d_pred[i] = int(p)
         i += 1
     # print(d_pred)
     jsonMsg = json.dumps(d_pred)
     sendPred(jsonMsg)
+    id = int(time.time())
+    saveRecord(d_pred, id)
     miniTrain()
     timesTrained += 1
     if timesTrained % 50 == 0:
