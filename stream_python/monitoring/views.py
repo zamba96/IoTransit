@@ -11,13 +11,15 @@ from .Registro import Registro
 global map
 
 def index(request):
+    template='index.html'
     map = streams.otherMain()
     a = ''
     for x, y in map.items():
         a += '{}:{}\n'.format(x, y)
     # return HttpResponse(a)
     print(map)
-    return HttpResponse(json.dumps(map), content_type='application/json')
+    #return HttpResponse(json.dumps(map), content_type='application/json')
+    return render(request, template)
 
 
 def voy(request, pk):
