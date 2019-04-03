@@ -12,7 +12,7 @@ def kafkaServer():
 kafkaServer = kafkaServer()
 
 try:
-    consumer = KafkaConsumer('livePred',
+    consumer = KafkaConsumer('input',
                              bootstrap_servers=kafkaServer)
     print("[INFO] Consumer OK")
 except:
