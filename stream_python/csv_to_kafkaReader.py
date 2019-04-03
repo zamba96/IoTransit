@@ -14,7 +14,7 @@ while(True):
     for row in data:
         id = 0
         for cell in row:
-            print("{}:{}".format(id, cell))
+            # print("{}:{}".format(id, cell))
             producer.send('input', key=id.to_bytes(4, byteorder='little'),
                           value=cell.item().to_bytes(4, byteorder='little'))
             id += 1

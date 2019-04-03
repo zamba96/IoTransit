@@ -29,7 +29,6 @@ except (Exception, psycopg2.Error) as error:
 
 kafkaServer = '54.149.247.97:9092'
 
-map = {-1: 1}
 top = tk.Tk()
 labels = [[]]
 vars = [[]]
@@ -39,6 +38,9 @@ try:
                              json.dumps(x).encode('utf-8'))
 except:
     print('Producer: Kafka Server Not Found on {}'.format(kafkaServer))
+    cursor.close()
+    connection.close()
+    exit()
 
 
 def main():
@@ -66,13 +68,16 @@ def init_consumer():
             map[key] = value
     except:
         print('Cosumer: Kafka Server Not Found on {}'.format(kafkaServer))
+        cursor.close()
+        connection.close()
+        exit()
 
 
-def sendMain(msg):
+def sendMain(jsonParam):
     # print(msg)
     id = int(time.time())
     producer.send('liveData', key=id.to_bytes(4, byteorder='little'),
-                  value=msg)
+                  value=jsonParam)
     producer.flush()
     return id
     # print('SendMain: Kafka Server Not Found on {}'.format(kafkaServer))
