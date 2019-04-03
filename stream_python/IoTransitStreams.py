@@ -32,6 +32,7 @@ kafkaServer = '54.149.247.97:9092'
 top = tk.Tk()
 labels = [[]]
 vars = [[]]
+map = {}
 try:
     producer = KafkaProducer(bootstrap_servers=kafkaServer,
                              value_serializer=lambda x:
