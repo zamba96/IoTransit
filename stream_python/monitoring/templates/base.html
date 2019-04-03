@@ -1,0 +1,72 @@
+{% extends 'basesenso0.html' %}
+{% block content %}
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto" class="border"></div>
+
+
+<table class="table table-striped">
+<tr>
+  <th>Sensor</th>
+
+        <th>Fecha</th>
+        <th>Registro</th>
+    </tr>
+    {% for x in tamx %}
+    <tr>
+        <td>{{ x.id }}</td>
+        <td>{{ x.fecha }}</td>
+        <td>{{ x.lectura }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+    <script>
+      _categories = {{categories|safe}};
+      _values = {{values|safe}};
+
+      Highcharts.chart('container', {
+    chart: {
+              type: 'column'
+    },
+    title: {
+              text: 'Demanda del sensor {{pk}}'
+    },
+    subtitle: {
+              text: ')'
+    },
+    xAxis: {
+              categories:_categories,
+              crosshair: true
+    },
+    yAxis: {
+              min: 0,
+              title: {
+      text: 'Tiempo'
+              }
+    },
+    tooltip: {
+              headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+      '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+              footerFormat: '</table>',
+              shared: true,
+              useHTML: true
+    },
+    plotOptions: {
+              column: {
+      pointPadding: 0.2,
+      borderWidth: 0
+        }
+    },
+
+    series: [{
+              name: 'Cantidad de usuarios',
+              data: _values
+
+    }]
+      });
+      </script>
+{% endblock %}
