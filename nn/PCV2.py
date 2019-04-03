@@ -4,6 +4,8 @@ import sys
 import numpy as np
 import os
 import argparse
+import time
+from kafka import KafkaProducer
 
 # Get user supplied values
 
@@ -45,106 +47,131 @@ print("[INFO] loading model...")
 net = cv2.dnn.readNetFromCaffe(proto, model)
 print("[INFO] loading Image...")
 
-# Read the image
-if not args.get("input", False):
-    print("[INFO] starting image stream...")
-    cam = VideoCapture(0)
-    s, image = cam.read()
-    imagePath = "nuevaImg.jpg"
-else:
-    print("[INFO] opening image file...")
-    imagePath = args["input"]
-    image = cv2.imread(imagePath)
+def captura():
+    # Read the image
+    if not args.get("input", False):
+        print("[INFO] starting image stream...")
+        cam = VideoCapture(0)
+        s, image = cam.read()
+        imagePath = "nuevaImg.jpg"
+    else:
+        print("[INFO] opening image file...")
+        imagePath = args["input"]
+        image = cv2.imread(imagePath)
 
-size = image.shape
+    size = image.shape
 
-img1 = image[0: round(size[0]/2), 0:round(size[1] / 2)]
-img2 = image[round(size[0]/2):size[0], 0:round(size[1] / 2)]
-img3 = image[0:round(size[0]/2), round(size[1] / 2):size[1]]
-img4 = image[round(size[0]/2):size[0], round(size[1] / 2):size[1]]
+    img1 = image[0: round(size[0]/2), 0:round(size[1] / 2)]
+    img2 = image[round(size[0]/2):size[0], 0:round(size[1] / 2)]
+    img3 = image[0:round(size[0]/2), round(size[1] / 2):size[1]]
+    img4 = image[round(size[0]/2):size[0], round(size[1] / 2):size[1]]
 
-imgenes = [img1, img2, img3, img4]
-blobs = []
-for im in imgenes:
+    imgenes = [img1, img2, img3, img4]
+    blobs = []
+    for im in imgenes:
 
-    gray = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
-    print("[INFO] Image Size:" + format(im.shape[:2]))
-    (h, w) = im.shape[:2]
-    (H, W) = im.shape[:2]
-    (h, w) = (300, 300)
-    print("[INFO] Image Scaled to:" + format((nh, nw)))
-    # blob = cv2.dnn.blobFromImage(cv2.resize(image, (500, 500)), 0.007843,
-    # (500, 500), 127.5)
-    blob = cv2.dnn.blobFromImage(cv2.resize(im, (nh, nw)),
-                                 0.007843, (nh, nw), 127.5)
-    blobs.append(blob)
-# blob = cv2.dnn.blobFromImage(image, 0.007843, image.shape[:2], 127.5)
+        gray = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
+        print("[INFO] Image Size:" + format(im.shape[:2]))
+        (h, w) = im.shape[:2]
+        (H, W) = im.shape[:2]
+        (h, w) = (300, 300)
+        print("[INFO] Image Scaled to:" + format((nh, nw)))
+        # blob = cv2.dnn.blobFromImage(cv2.resize(image, (500, 500)), 0.007843,
+        # (500, 500), 127.5)
+        blob = cv2.dnn.blobFromImage(cv2.resize(im, (nh, nw)),
+                                     0.007843, (nh, nw), 127.5)
+        blobs.append(blob)
+        return blobs
+    # blob = cv2.dnn.blobFromImage(image, 0.007843, image.shape[:2], 127.5)
 
-minConf = args["confidence"]
+def identificar(blobs):
+    minConf = args["confidence"]
 
-print("[INFO] computing object detections...")
-print("[INFO] Confidence level = {}%".format(minConf*100))
-# net.setInput(blob)
-# detections = net.forward()
+    print("[INFO] computing object detections...")
+    print("[INFO] Confidence level = {}%".format(minConf*100))
+    # net.setInput(blob)
+    # detections = net.forward()
 
-j = 0
-l = 1
-for pBlob in blobs:
-    # loop over the detections
-    net.setInput(pBlob)
-    detections = net.forward()
-    for i in np.arange(0, detections.shape[2]):
-        # extract the confidence (i.e., probability) associated with the
-        # prediction
-        confidence = detections[0, 0, i, 2]
+    j = 0
+    l = 1
+    for pBlob in blobs:
+        # loop over the detections
+        net.setInput(pBlob)
+        detections = net.forward()
+        for i in np.arange(0, detections.shape[2]):
+            # extract the confidence (i.e., probability) associated with the
+            # prediction
+            confidence = detections[0, 0, i, 2]
 
-        # filter out weak detections by ensuring the `confidence` is
-        # greater than the minimum confidence
-        if confidence > minConf:
-            # extract the index of the class label from the `detections`,
-            # then compute the (x, y)-coordinates of the bounding box for
-            # the object
-            idx = int(detections[0, 0, i, 1])
-            if CLASSES[idx] != "person":
-                continue
-            box = detections[0, 0, i, 3:7] * np.array([W, H, W, H])
-            (startX, startY, endX, endY) = box.astype("int")
+            # filter out weak detections by ensuring the `confidence` is
+            # greater than the minimum confidence
+            if confidence > minConf:
+                # extract the index of the class label from the `detections`,
+                # then compute the (x, y)-coordinates of the bounding box for
+                # the object
+                idx = int(detections[0, 0, i, 1])
+                if CLASSES[idx] != "person":
+                    continue
+                box = detections[0, 0, i, 3:7] * np.array([W, H, W, H])
+                (startX, startY, endX, endY) = box.astype("int")
 
-            j+=1
+                j+=1
 
-            # display the prediction
-            #label = ":{:.1f}%".format(confidence * 100)
-            label = "{}:{:.1f}%".format(CLASSES[idx],confidence * 100)
-            print("[INFO] {}".format(label))
-            if l == 1:
-                sum1 = 0
-                sum2 = 0
-            elif l ==2:
-                sum1 = round(size[0]/2)
-                sum2 = 0
-            elif l ==3:
-                sum1 = 0
-                sum2 = round(size[1]/2)
-            elif l ==4:
-                sum1 = round(size[0]/2)
-                sum2 = round(size[1]/2)
+                # display the prediction
+                #label = ":{:.1f}%".format(confidence * 100)
+                label = "{}:{:.1f}%".format(CLASSES[idx],confidence * 100)
+                print("[INFO] {}".format(label))
+                if l == 1:
+                    sum1 = 0
+                    sum2 = 0
+                elif l ==2:
+                    sum1 = round(size[0]/2)
+                    sum2 = 0
+                elif l ==3:
+                    sum1 = 0
+                    sum2 = round(size[1]/2)
+                elif l ==4:
+                    sum1 = round(size[0]/2)
+                    sum2 = round(size[1]/2)
 
-            cv2.rectangle(image, (startX + sum2, startY + sum1), (endX +sum2, endY + sum1),
-                          (0, 0, 255), 1)
-            y = startY - 15 +sum1 if startY - 15 +sum1 > 15 else startY + 15 +sum1
-            cv2.putText(image, label, (startX + sum2, y),
-                          cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[idx], 2)
-    l +=1
+                cv2.rectangle(image, (startX + sum2, startY + sum1), (endX +sum2, endY + sum1),
+                              (0, 0, 255), 1)
+                y = startY - 15 +sum1 if startY - 15 +sum1 > 15 else startY + 15 +sum1
+                cv2.putText(image, label, (startX + sum2, y),
+                              cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[idx], 2)
+        l +=1
+    return j
 
-# show the output image
-print("Found {0} persons!".format(j))
-print("/pic/OUTPUT_" + imagePath.split(os.sep)[len(imagePath.split(os.sep))-1])
-cv2.imwrite("./pic/OUTPUT__"+imagePath.split(os.sep)[len(imagePath.split(os.sep))-1], image)
-cv2.waitKey(0)
+while True:
+    bs = captura()
+    j = identificar(bs)
+    #send info to Kafka
+    id = 50
+    print("[INFO] sending to Kafka")
+    producer = KafkaProducer(bootstrap_servers='54.149.247.97:9092')
 
-# if we are not using a video file, stop the camera video stream
-if not args.get("input", False):
-	vs.stop()
 
-# close any open windows
-cv2.destroyAllWindows()
+    producer.send('input', key=id.to_bytes(4, byteorder='little'),
+                    value=j.to_bytes(4, byteorder='little'))
+    producer.flush()
+    print("[INFO] message sent")
+    time.sleep(1)
+    
+    key = cv2.waitKey(1) & 0xFF
+    if key == ord('q'):
+        # if we are not using a video file, stop the camera video stream
+        if not args.get("input", False):
+        	cam.release()
+
+        # close any open windows
+        cv2.destroyAllWindows()
+
+        # show the output image
+        print("Found {0} persons".format(j))
+        print("/pic/OUTPUT_" + imagePath.split(os.sep)[len(imagePath.split(os.sep))-1])
+        cv2.imwrite("./pic/OUTPUT__"+imagePath.split(os.sep)[len(imagePath.split(os.sep))-1], image)
+        cv2.waitKey(0)
+        break
+
+#bootstrap_servers='54.149.247.97:9092'
+#input
