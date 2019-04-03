@@ -19,6 +19,7 @@ def index(request):
     print(map)
     return HttpResponse(json.dumps(map), content_type='application/json')
 
+
 def voy(request, pk):
     template='base.html'
     datos=[]
