@@ -85,7 +85,44 @@ def sensores(request):
           row = cursor.fetchone()
         inputs = np.array(datos)
         tamx=[]
-        for x in range(0, tam):
+        for x in range(len(z)-tam-1, len(z)):
+            tamx.append(z[x])
+        context = {'query': datos, 'table_data':inputs, 'tam':tam, 'tamx':tamx, 'x1':x1,'y1':y1}
+    return render(request, template, context=context)
+
+def redNeuronal(request):
+    template='basered.html'
+    datos=[]
+    z=[]
+    x1=[]
+    y1=[]
+    tam=30
+    with connections['default2'].cursor() as cursor:
+        cursor.execute("SELECT * FROM pred ")
+        row = cursor.fetchone()
+        cont=0
+        while row is not None:
+          datos.append(list(row))
+          m= str(datetime.fromtimestamp(row[0]))
+          for x in range(1, len(row)):
+              y= Registro(m,x,row[x])
+              z.append(y)
+              if(cont==0):
+                  u=0
+                  x1=range(len(row)-1)
+                  x1=list(range(len(row)-1))
+
+                  for t in row:
+                      if(u!=0):
+                          y1.append(t)
+                      u=1
+                  cont=cont+1
+
+          row = cursor.fetchone()
+        inputs = np.array(datos)
+        tamx=[]
+        
+        for x in range(len(z)-tam-1, len(z)):
             tamx.append(z[x])
         context = {'query': datos, 'table_data':inputs, 'tam':tam, 'tamx':tamx, 'x1':x1,'y1':y1}
     return render(request, template, context=context)
