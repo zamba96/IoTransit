@@ -81,10 +81,10 @@ def captura():
         blob = cv2.dnn.blobFromImage(cv2.resize(im, (nh, nw)),
                                      0.007843, (nh, nw), 127.5)
         blobs.append(blob)
-        return blobs
+        return blobs, H, W, image
     # blob = cv2.dnn.blobFromImage(image, 0.007843, image.shape[:2], 127.5)
 
-def identificar(blobs):
+def identificar(blobs, H, W,image):
     minConf = args["confidence"]
 
     print("[INFO] computing object detections...")
@@ -143,10 +143,11 @@ def identificar(blobs):
     return j
 
 while True:
-    bs = captura()
-    j = identificar(bs)
+    (bs, H, W, image) = captura()
+    j = identificar(bs, H, W, image)
     #send info to Kafka
-    id = 50
+    id = 1
+    print("Found {0} persons".format(j))
     print("[INFO] sending to Kafka")
     producer = KafkaProducer(bootstrap_servers='54.149.247.97:9092')
 
@@ -156,7 +157,7 @@ while True:
     producer.flush()
     print("[INFO] message sent")
     time.sleep(1)
-    
+
     key = cv2.waitKey(1) & 0xFF
     if key == ord('q'):
         # if we are not using a video file, stop the camera video stream
