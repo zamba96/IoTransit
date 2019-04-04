@@ -21,6 +21,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     url('^sensores/ver/(?P<pk>\d+)/$', csrf_exempt(views.voy), name='voy'),
+    url('^sensores/predicciones', csrf_exempt(views.redNeuronal), name='redNeuronal'),
     url('^sensores/$', csrf_exempt(views.sensores), name='sensores'),
 
     url(r'^$', views.index, name='index'),
