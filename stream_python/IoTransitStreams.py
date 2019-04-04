@@ -27,7 +27,15 @@ try:
 except (Exception, psycopg2.Error) as error:
     print("Error while connecting to PostgreSQL", error)
 
-kafkaServer = '54.149.247.97:9092'
+
+def kafkaServer():
+    with open('config/ip.json') as json_file:
+        data = json.load(json_file)
+        print(data['ip'])
+        return data['ip']
+
+
+kafkaServer = kafkaServer()
 
 top = tk.Tk()
 labels = [[]]
@@ -46,6 +54,7 @@ except:
 
 def main():
     n = 31
+    print('[INFO] IoTransit Streams')
     for i in range(n):
         map[i] = -1
     threading.Thread(target=init_consumer, daemon=True).start()

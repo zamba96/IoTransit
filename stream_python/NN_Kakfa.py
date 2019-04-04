@@ -175,6 +175,7 @@ except:
 
 # Main loop
 timesTrained = 0
+print('[INFO] IoTransit NN Predictor')
 for msg in consumer:
     a = json.loads(msg.value)
     # print(a)

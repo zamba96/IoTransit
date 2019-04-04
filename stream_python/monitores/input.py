@@ -20,7 +20,8 @@ except:
     exit()
 
 # Main loop
+print('[INFO] Input channel monitor')
 for msg in consumer:
     value = int.from_bytes(msg.value, byteorder='little')
     key = int.from_bytes(msg.key, byteorder='little')
-    print('{}:{}'.format(key, value))
+    print('Input: {}:{}'.format(key, value))

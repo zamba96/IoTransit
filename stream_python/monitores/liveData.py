@@ -22,6 +22,7 @@ except:
     exit()
 
 # Main loop
+print('[INFO] liveData channel monitor')
 for msg in consumer:
     map = {}
     a = json.loads(msg.value)

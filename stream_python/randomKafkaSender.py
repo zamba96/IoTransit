@@ -1,10 +1,19 @@
 from kafka import KafkaProducer
 import random as rd
 import time
+import json
 
+def kafkaServer():
+    with open('config/ip.json') as json_file:
+        data = json.load(json_file)
+        print(data['ip'])
+        return data['ip']
+
+
+kafkaServer = kafkaServer()
 
 try:
-    producer = KafkaProducer(bootstrap_servers='54.149.247.97:9092')
+    producer = KafkaProducer(bootstrap_servers=kafkaServer)
 except:
     print("Kafka Server Not Found")
 

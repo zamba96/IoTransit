@@ -3,8 +3,19 @@ from kafka import KafkaConsumer
 import random as rd
 import json
 
-map = {-1: -1}
-kafkaServer = '54.149.247.97:9092'
+map = {}
+
+
+def kafkaServer():
+    with open('config/ip.json') as json_file:
+        data = json.load(json_file)
+        print(data['ip'])
+        return data['ip']
+
+
+kafkaServer = kafkaServer()
+
+
 started = False
 
 
