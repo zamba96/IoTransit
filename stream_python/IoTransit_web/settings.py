@@ -87,7 +87,7 @@ DATABASES = {
         'NAME': 'iotransit',
         'USER': 'postgres',
         'PASSWORD': '12345',
-        'HOST': '54.149.247.97',
+        'HOST': '34.210.181.142',
         'PORT': '5432',
     }
 }

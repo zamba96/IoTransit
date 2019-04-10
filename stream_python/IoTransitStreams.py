@@ -14,7 +14,7 @@ cursor = None
 try:
     connection = psycopg2.connect(user="postgres",
                                   password="12345",
-                                  host="54.149.247.97",
+                                  host="34.210.181.142",
                                   port="5432",
                                   database="iotransit")
     cursor = connection.cursor()

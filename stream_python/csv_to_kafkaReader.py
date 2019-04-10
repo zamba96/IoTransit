@@ -3,7 +3,7 @@ from kafka import KafkaProducer
 import time
 
 try:
-    producer = KafkaProducer(bootstrap_servers='54.149.247.97:9092')
+    producer = KafkaProducer(bootstrap_servers='34.210.181.142:9092')
 except:
     print("Kafka Server Not Found")
 
