@@ -3,7 +3,6 @@ import tensorflow as tf
 from kafka import KafkaConsumer
 from kafka import KafkaProducer
 import json
-import sys
 from tensorflow.keras import layers
 from tensorflow import keras
 import time
@@ -199,8 +198,6 @@ for msg in consumer:
     timesTrained += 1
     if timesTrained % 50 == 0:
         saveModel()
-
-
 
     # ts = int.from_bytes(msg.key, byteorder='little')
     # print(ts)

@@ -8,13 +8,23 @@ import tkinter as tk
 import json
 import psycopg2
 
+
+def kafkaServer():
+    with open('config/ip.json') as json_file:
+        data = json.load(json_file)
+        print(data['psql'])
+        return data['psql']
+
+
+kafkaServer = kafkaServer()
+
 # PostgreSQL connection
 connection = None
 cursor = None
 try:
     connection = psycopg2.connect(user="postgres",
                                   password="12345",
-                                  host="34.210.181.142",
+                                  host=kafkaServer,
                                   port="5432",
                                   database="iotransit")
     cursor = connection.cursor()
@@ -100,6 +110,7 @@ def saveRecord(record, ts):
         if k != -1 and v != -1:
             st += ",\n{}".format(v)
         if v == -1:
+            print("FLAG:{}".format(flag))
             flag = False
     st += ");"
     # print(st)

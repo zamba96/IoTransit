@@ -3,14 +3,9 @@ import tensorflow as tf
 # from tensorflow.keras.layers import Input, Dense
 from tensorflow.keras import layers
 from tensorflow import keras
-import numpy as np
 import pandas as pd
 import psycopg2
-import seaborn as sns
 import matplotlib.pyplot as plt
-
-
-
 
 
 # PostgreSQL connection

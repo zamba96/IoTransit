@@ -3,6 +3,7 @@ import random as rd
 import time
 import json
 
+
 def kafkaServer():
     with open('config/ip.json') as json_file:
         data = json.load(json_file)
@@ -26,5 +27,5 @@ while(True):
     print('{}:{}'.format(id, rand))
     time.sleep(1 / 8)
     id += 1
-    if id == 8:
+    if id == 31:
         id = 0
