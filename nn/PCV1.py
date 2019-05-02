@@ -7,6 +7,15 @@ import argparse
 import time
 from kafka import KafkaProducer
 
+# USAGE
+# To read from webcam and write back out to disk:
+# python PCV1.py --prototxt mobilenet_ssd/MobileNetSSD_deploy.prototxt
+# --model mobilenet_ssd/MobileNetSSD_deploy.caffemodel
+
+# To read and write back out to video:
+# python PCV1.py --prototxt mobilenet_ssd/MobileNetSSD_deploy.prototxt 
+# --model mobilenet_ssd/MobileNetSSD_deploy.caffemodel --input videos/example_01.mp4
+
 # Get user supplied values
 
 #protoPath = sys.argv[2]
@@ -119,7 +128,7 @@ while True:
     id = 1
     print("Found {0} persons".format(j))
     print("[INFO] sending to Kafka")
-    producer = KafkaProducer(bootstrap_servers='54.149.247.97:9092')
+    producer = KafkaProducer(bootstrap_servers='34.210.181.142:9092')
     for i in range(31):
 	    producer.send('input', key=i.to_bytes(4, byteorder='little'),value=j.to_bytes(4, byteorder='little'))
     producer.flush()
