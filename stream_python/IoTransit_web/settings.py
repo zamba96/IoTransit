@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'EmoPy',
+    'cv2',
+    'PIL'
 ]
 
 MIDDLEWARE = [
@@ -87,7 +90,7 @@ DATABASES = {
         'NAME': 'iotransit',
         'USER': 'postgres',
         'PASSWORD': '12345',
-        'HOST': '34.210.181.142',
+        'HOST': '34.210.104.161',
         'PORT': '5432',
     }
 }

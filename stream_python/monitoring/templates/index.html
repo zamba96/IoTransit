@@ -1,232 +1,485 @@
 
-<html>
+{% load static  %}
 
-{% load static %}
 
-<!--Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
---><head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>IoTransit</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Title Here</title>
-    <!-- Custom-Files -->
-    <link rel="stylesheet" href="{% static '/bundles/css/bootstrap.css' %}">
-    <!-- Bootstrap-Core-CSS -->
-    <link rel="stylesheet" href="{% static '/bundles/css/style.css' %}" type="text/css" media="all">
-    <!-- Style-CSS -->
-    <!-- font-awesome-icons -->
-    <link href="{% static '/bundles/css/font-awesome.css' %}" rel="stylesheet">
-    <!-- //font-awesome-icons -->
-      <!-- /Fonts -->
-    <link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
-    <!-- //Fonts -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static '/snipp/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/aos.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/jquery.timepicker.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/style.css' %}">
 
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script   src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-</head>
-
-<body>
-
-    <div id="page" class="page">
-
-    <!-- mian-content -->
-
-    <!--// mian-content -->
-<!-- about-->
-
-<!-- //about -->
-<!-- middle-->
-
-	<!-- //middle-->
-<!-- about-->
-
-<!-- //about -->
-  <!-- video -->
-
-    <!--//video-->
-<!-- news -->
-
-<!-- //news -->
-<!-- section-middle -->
-
-<!-- //section-middle -->
-<!-- features -->
-
-<!-- //features -->
-<!-- section-middle -->
-
-<!-- //section-middle -->
-<!-- blog -->
-
-<!-- //blog -->
-<!-- testimonials -->
-
-    <!-- //testimonials -->
-
- <!-- collection -->
-
-    <!-- collection -->
-<!-- contact -->
-
-<!-- //contact -->
-  <!-- copyright -->
-
-    <!-- //copyright --><!-- mian-content -->
-    <div class="main-content bg bg2" id="home">
-        <div class="layer">
-            <!-- header -->
-            <header class="editContent py-4">
-                <div class="container-fluid px-lg-5">
-
-                    <!-- nav -->
-                    <nav class="d-lg-flex">
-                        <ul class="menu mt-2 ml-auto"><li class="active"><a href="/live/sensores" style="outline: none; outline-offset: -2px; cursor: inherit;">Dashboard</a></li>
+      <script src="{% static '/snipp/js/jquery.min.js' %}"></script>
+      <script src="{% static '/snipp/js/jquery-migrate-3.0.1.min.js' %}"></script>
+      <script src="{% static '/snipp/js/popper.min.js' %}"></script>
+      <script src="{% static '/snipp/js/bootstrap.min.js' %}"></script>
+      <script src="{% static '/snipp/js/jquery.easing.1.3.js' %}"></script>
+      <script src="{% static '/snipp/js/jquery.waypoints.min.js' %}"></script>
+      <script src="{% static '/snipp/js/jquery.stellar.min.js' %}"></script>
+      <script src="{% static '/snipp/js/owl.carousel.min.js' %}"></script>
+      <script src="{% static '/snipp/js/jquery.magnific-popup.min.js' %}"></script>
+      <script src="{% static '/snipp/js/aos.js' %}"></script>
+      <script src="{% static '/snipp/js/jquery.animateNumber.min.js' %}"></script>
+      <script src="{% static '/snipp/js/bootstrap-datepicker.js' %}"></script>
+      <script src="{% static '/snipp/js/jquery.timepicker.min.js' %}"></script>
+      <script src="{% static '/snipp/js/particles.min.js' %}"></script>
+      <script src="{% static '/snipp/js/particle.js' %}"></script>
+      <script src="{% static '/snipp/js/scrollax.min.js' %}"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+      <script src="{% static '/snipp/js/google-map.js' %}"></script>
+      <script src="{% static '/snipp/js/main.js' %}"></script>
 
 
 
-                            <li><a href="#contact" class="scroll" style="outline: none; cursor: inherit;">Contact</a></li>
-                        </ul>
-                    </nav>
-                    <!-- //nav -->
-                </div>
-            </header>
-            <!-- //header -->
-            <div class="container">
-                <!-- /banner -->
-                <div class="banner-info-w3layouts text-center">
-                    <h3 class="editContent">IoTransmi</h3>
-					<div class="read-more">
-                        <a href="#about" class="read-more scroll btn">Read More </a> </div>
-                </div>
 
-            </div>
-            <!-- //banner -->
-        </div>
+  </head>
+  <body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">IoTransit.</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active"><a href="" class="nav-link">Home</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="portfolio.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Portafolio</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+                <a class="dropdown-item" href="/live/sensores">Prototipo Dashboard</a>
+                <a class="dropdown-item" href="/live/video">Prototipo EmoPy</a>
+              </div>
+          </li>
+          <li class="nav-item cta"><a href="" class="nav-link"><span>Contacto</span></a></li>
+        </ul>
+      </div>
     </div>
-    <!--// mian-content -->
-<!-- about-->
-<section class="wthree-row ed" id="about">
-	<div class="container">
+  </nav>
+    <!-- END nav -->
 
-	</div>
-</section>
-<!-- //about -->
-<!-- middle-->
-	<div class="middle-info py-5 editContent" id="some" style="outline: none; outline-offset: -2px; cursor: inherit;">
-		<div class="container py-xl-5 py-3">
-			<h3 class="w3ls-title-2 text-center font-weight-bold text-wh mb-5 editContent" style="outline: rgba(233, 94, 94, 0.5) solid 2px; outline-offset: -2px; cursor: pointer;">Io Transmi&nbsp;<br></h3><div class="buttons-w3pvt text-center mt-lg-4 pb-lg-5"><span style="color: rgb(255, 255, 255); font-size: 1em; letter-spacing: 1px;">Análisis y predicción de demanda para espacios públicos.</span></div><div class="buttons-w3pvt text-center mt-lg-4 pb-lg-5"><a href="#about" class="button-style scroll mr-3 btn" style="outline: none; cursor: inherit;">Read More</a>
-				</div>
-		</div>
-	</div>
-	<!-- //middle-->
-<!-- about-->
-
-<!-- //about -->
-  <!-- video -->
-    <section class="video py-lg-4 py-md-3 py-sm-3 py-3 bg bg2" id="video">
-      <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
-        <div class="box">
-          <a class="button" href="#popup1"><span class="fa fa-play-circle" aria-hidden="true"></span></a>
+    <!-- <div class="js-fullheight"> -->
+    <div class="hero-wrap js-fullheight">
+      <div class="overlay"></div>
+      <div id="particles-js"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+          <div class="col-md-6 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Llevando inteligencia al transito <strong>Peatonal</strong></h1>
+            <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="" class="btn btn-primary btn-outline-white px-5 py-3">Contacto</a></p>
+          </div>
         </div>
-        <div id="popup1" class="overlay">
-          <div class="popup">
-            <a class="close" href="#video">×</a>
-            <div class="videoWrapper">
-              <iframe src="https://player.vimeo.com/video/134439919"></iframe>
+      </div>
+    </div>
 
+    <div class="bg-light">
+    <section class="ftco-section-featured ftco-animate">
+      <div class="container-fluid" data-scrollax-parent="true">
+        <div class="row no-gutters d-flex align-items-center" data-scrollax=" properties: { translateY: '-30%'}">
+
+          <div class="col-md-3 mb-3">
+            <a href="#" class="featured-img">
+              <div class="text-1 p-4 d-flex align-items-center">
+                <h3>The Verge<br><span class="tag">Website</span></h3>
+              </div>
+              <img src="https://cdn-images-1.medium.com/max/800/1*Plv6QiddQAWFuM8ZkNdEMA.png" class="img-fluid" alt="">
+              <div class="text p-4 d-flex align-items-center">
+                <div class="user d-flex align-items-center">
+                  <div class="user-img mr-3" style="background-image: url(images/person_1.jpg);"></div>
+                  <h3>Laura Forero <br><span class="position">Designer</span></h3>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-md-6">
+            <div class="row no-gutters">
+              <div class="col-md-12">
+                <div class="row no-gutters d-flex align-items-end">
+
+                  <div class="col-md-8">
+                    <a href="#" class="featured-img">
+                      <div class="text-1 p-4 d-flex align-items-center">
+                        <h3>Racks<br><span class="tag">Website</span></h3>
+                      </div>
+                      <img src="http://19yw4b240vb03ws8qm25h366-wpengine.netdna-ssl.com/wp-content/uploads/faceplus-example.png" class="img-fluid" alt="">
+                      <div class="text p-4 d-flex align-items-center">
+                        <div class="user d-flex align-items-center">
+                          <div class="user-img mr-3" style="background-image: url(images/person_1.jpg);"></div>
+                          <h3>Laura Forero <br><span class="position">Designer</span></h3>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="col-md-4">
+                    <a href="#" class="featured-img">
+                      <div class="text-1 p-4 d-flex align-items-center">
+                        <h3>Zendesk<br><span class="tag">Website</span></h3>
+                      </div>
+                      <img src="https://www.affectiva.com/wp-content/uploads/2017/03/boy-with-affdexme-2-790x832.jpg" class="img-fluid" alt="">
+                      <div class="text p-4 d-flex align-items-center">
+                        <div class="user d-flex align-items-center">
+                          <div class="user-img mr-3" style="background-image: url(images/person_1.jpg);"></div>
+                          <h3>Laura Forero <br><span class="position">Designer</span></h3>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="row no-gutters d-flex align-items-start">
+                  <div class="col-md-8">
+                    <a href="#" class="featured-img">
+                      <div class="text-1 p-4 d-flex align-items-center">
+                        <h3>Curator<br><span class="tag">Website</span></h3>
+                      </div>
+                      <img src="https://mindhackinghappiness.com/wp-content/uploads/2017/12/artificial-emotional-intelligence.jpg" class="img-fluid" alt="">
+                      <div class="text p-4 d-flex align-items-center">
+                        <div class="user d-flex align-items-center">
+                          <div class="user-img mr-3" style="background-image: url(images/person_1.jpg);"></div>
+                          <h3>Laura Forero <br><span class="position">Designer</span></h3>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#" class="featured-img">
+                      <div class="text-1 p-4 d-flex align-items-center">
+                        <h3>Tasty<br><span class="tag">Website</span></h3>
+                      </div>
+                      <img src="https://i2.wp.com/terceravia.mx/wp-content/uploads/2016/11/brain_M1.jpg?fit=1190%2C961" class="img-fluid" alt="">
+                      <div class="text p-4 d-flex align-items-center">
+                        <div class="user d-flex align-items-center">
+                          <div class="user-img mr-3" style="background-image: url(images/person_1.jpg);"></div>
+                          <h3>Laura Forero <br><span class="position">Designer</span></h3>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <a href="#" class="featured-img">
+              <div class="text-1 p-4 d-flex align-items-center">
+                <h3>Voyage<br><span class="tag">Website</span></h3>
+              </div>
+              <img src="https://cdn-images-1.medium.com/max/1600/1*GnnnT3cvSGVftGifQ0ONTg.gif" class="img-fluid" alt="">
+              <div class="text p-4 d-flex align-items-center">
+                <div class="user d-flex align-items-center">
+                  <div class="user-img mr-3" style="background-image: url(images/person_1.jpg);"></div>
+                  <h3>Laura Forero <br><span class="position">Designer</span></h3>
+                </div>
+              </div>
+            </a>
+          </div>
+
+        </div>
+        <div class="row mt-5 d-flex justify-content-center">
+          <div class="col-md-8 text-center heading-section ftco-animate">
+            <h2 class="h1">Sistema flexible y modular que provee informacion y predicciónes  mediante inteligencia artificial y analisis de imagen para analizar el <strong class="px-3">Transito peatonal</strong> </h2>
+            <p><a href="/live/sensores" class="btn btn-primary mt-3 py-3 px-5">Prototipo</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+
+
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-5">
+          <div class="col-md-6 text-center heading-section ftco-animate">
+            <span class="subheading">Nuestro Services</span>
+            <h2 class="mb-4">Modulos disponibles</h2>
+            <p>En la actualidad proveemos información en tiempo real sobre el transito peatonal en distintos canales mediante una API REST y un portal web, en los siguientes aspectos:</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-3 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block text-center">
+              <div class="d-flex justify-content-center"><div class="icon color-3 d-flex justify-content-center mb-3"><span class="align-self-center icon-lightbulb-o"></span></div></div>
+              <div class="media-body p-2 mt-3">
+                <h3 class="heading">Conteo de personas</h3>
+                <p>Mediante el uso de una red neuronal de analisis de imagen, ejecutada en un sensor con un precio bajo se envia la información a un servidor central.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block text-center">
+              <div class="d-flex justify-content-center"><div class="icon color-1 d-flex justify-content-center mb-3"><span class="align-self-center icon-laptop"></span></div></div>
+              <div class="media-body p-2 mt-3">
+                <h3 class="heading">Estado anímico </h3>
+                <p>MEdiante el analisis de imagen, se establece informaición del estado de animo de personas. Esta información es presentada en todos los canales.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block text-center">
+              <div class="d-flex justify-content-center"><div class="icon color-2 d-flex justify-content-center mb-3"><span class="align-self-center icon-gear"></span></div></div>
+              <div class="media-body p-2 mt-3">
+                <h3 class="heading">Predicción</h3>
+                <p>Mediante una red convulsional se proveen predicciones para datos de conteo de personas y capacidad. Así mismo, flujo de personas en un espacio público. </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block text-center">
+              <div class="d-flex justify-content-center"><div class="icon color-4 d-flex justify-content-center mb-3"><span class="align-self-center icon-live_help"></span></div></div>
+              <div class="media-body p-2 mt-3">
+                <h3 class="heading">Bajo costo de infraestructura</h3>
+                <p>La carga de trabajo esta distribuida en los sensores, lo que garantiza un bajo precio, así mismo, contamos con una tecnologia de punta que requiere poca capacidad de computo. </p>
+              </div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
-    <!--//video-->
-<!-- news -->
 
-<!-- //news -->
-<!-- section-middle -->
-
-<!-- //section-middle -->
-<!-- features -->
-
-<!-- //features -->
-<!-- section-middle -->
-
-<!-- //section-middle -->
-<!-- blog -->
-
-<!-- //blog -->
-<!-- testimonials -->
-
-    <!-- //testimonials -->
-
- <!-- collection -->
-
-    <!-- collection -->
-<!-- contact -->
-<section class="contact py-5 bg bg2" id="contact">
-	<div class="container py-sm-4">
-
-		<div class="row contact-top editContent">
-			<div class="col-lg col-md-6 contact-grid-wthree editContent">
-				<div class="contact_grid_right">
-				<form action="#" method="post">
-					<div class="contact_left_grid">
-						<div class="con-left">
-							<div class="form-group editContent" style="outline: none; cursor: inherit;">
-								<input class="form-control" type="text" name="Name" placeholder="Name" required="">
-							</div>
-							<div class="form-group editContent" style="outline: none; cursor: inherit;">
-								<input class="form-control" type="email" name="Email" placeholder="Email" required="">
-							</div>
-							<div class="form-group editContent">
-								<textarea id="textarea" placeholder="Message" required=""></textarea>
-							</div>
-							<div class="sub-honey mx-auto mt-3">
-								<button class="form-control btn" type="submit" style="outline: none; cursor: inherit;">Submit</button>
-							</div>
-						</div>
-					</div>
-				</form>
-				</div>
-			</div>
-			<div class="col-lg-6 col-md-6 contact-grid-wthree foot-top mt-md-0 mt-5 editContent" style="outline: rgba(233, 94, 94, 0.5) solid 2px; outline-offset: -2px; cursor: pointer;">
-				<h3 class="contact-title mb-sm-4 mb-2 editContent">Contacto</h3>
-				<div class="contact-info">
-					<p class="mb-4 editContent" style="outline: rgba(233, 94, 94, 0.5) solid 2px; outline-offset: -2px; cursor: pointer;">Dudas de nuestro proyecto.</p>
-					<div class="contact-style-w3ls">
-						<p class="editContent"><span class="fa fa-map-marker" style="outline: none; cursor: inherit;"></span><strong style="font-size: 1em; background-color: initial;">Email :</strong><span style="font-size: 1em; background-color: initial;"> </span><a class="editContent" href="mailto:example@mail.com" style="outline: none; cursor: inherit;">example@mail.com</a></p></div>
-					<div class="contact-style-w3ls">
-						<p class="editContent"><span class="fa fa-phone" style="outline: none; cursor: inherit;"></span><strong>Phone :</strong> +121 568 789 901</p>
-						<p class="editContent"><span class="fa fa-mobile" style="outline: none; cursor: inherit;"></span><strong>Mobile :</strong> +121 211 366 422</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- //contact -->
-  <!-- copyright -->
-    <div class="cpy-right-sec-w3ls">
+    <section class="ftco-section-parallax">
+      <div class="parallax-img d-flex align-items-center">
         <div class="container">
-            <div class="cpy-right text-left py-3 row">
-                <p class="col-md-8">© 2019 IoTrasit.
-                  </p>
-                <!-- move top icon -->
-                <a href="#home" class="move-top text-right col-md-4"><span class="fa fa-long-arrow-up" aria-hidden="true" style="outline: none; cursor: inherit;"></span></a>
-                <!-- //move top icon -->
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+              <h2>Subcribete to nuestras noticias</h2>
+              <p>Si deseas conocer de cerca nuestro prototipo, puedes acceder a la seccion portafolio o dejarnos tu correo para hacer parte de un test de usabilidad.</p>
+              <div class="row d-flex justify-content-center mt-5">
+                <div class="col-md-6">
+                  <form action="#" class="subscribe-form">
+                    <div class="form-group">
+                      <span class="icon icon-paper-plane"></span>
+                      <input type="text" class="form-control" placeholder="Enter email address">
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-    <!-- //copyright --></div>
+      </div>
+    </section>
+
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row no-gutters justify-content-center mb-5 pb-5">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+            <span class="subheading">Modulos</span>
+            <h2 class="mb-4">Descripción  detallada de nuestros componentes.</h2>
+            <p>En la actualidad, nuestro sistema esta compuesto por 3 sistemas de inteligencia artificial para el manejo de cada modulo.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="block-3 d-md-flex ftco-animate" data-scrollax-parent="true">
+            <a href="portfolio.html" class="image" style="background-image: url('https://cdn-images-1.medium.com/max/1600/1*GnnnT3cvSGVftGifQ0ONTg.gif'); " data-scrollax=" properties: { translateY: '-20%'}">
+            </a>
+            <div class="text">
+              <h4 class="subheading">Conteo de personas</h4>
+              <h2 class="heading"><a href="portfolio.html">IA para Conteo de personas</a></h2>
+              <p>Nuestro sistema esta desarrollado en python, el sistema de conteo de personas permite conocer la información en tiempo real de los espacios que tienen flujo de personas en su empresa.</p>
+              <p><a href="/live/sensores" class="btn btn-primary px-4">Ver</a></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="block-3 d-md-flex ftco-animate" data-scrollax-parent="true">
+              <a href="portfolio.html" class="image" style="background-image: url('https://www.bbva.com/wp-content/uploads/2018/12/A-1810-IA-BBVA-1024x629.jpg'); " data-scrollax=" properties: { translateY: '-20%'}">
+              </a>
+              <div class="text">
+                <h4 class="subheading">Predicción</h4>
+                <h2 class="heading"><a href="portfolio.html">Red neuronal de predicción</a></h2>
+                <p>Nuestra red neural reconoce los datos y aprende desde el momento que adquiere nuestros servicios, la información de predicción esta disponible en todos los canales de información.</p>
+                <p><a href="/live/sensores/predicciones" class="btn btn-primary px-4">Ver</a></p>
+              </div>
+            </div>
+          <div class="block-3 d-md-flex ftco-animate" data-scrollax-parent="true">
+            <a href="portfolio.html" class="image image-2 order-2" style="background-image: url('https://mindhackinghappiness.com/wp-content/uploads/2017/12/artificial-emotional-intelligence.jpg');" data-scrollax=" properties: { translateY: '-20%'}"></a>
+            <div class="text order-1">
+              <h4 class="subheading">Estado anímico</h4>
+              <h2 class="heading"><a href="portfolio.html">IA reconocimiento de emociones</a></h2>
+              <p>El sistema de reconocimiento facil cuenta con un catalogo de emociones que puede usar para obtener los datos, y facilitar la planeación en su organización.</p>
+              <p><a href="/live/video" class="btn btn-primary px-4">Ver</a></p>
+            </div>
+          </div>
+          <div class="block-3 d-md-flex ftco-animate" data-scrollax-parent="true">
+            <a href="portfolio.html" class="image" style="background-image: url('https://s3-us-west-2.amazonaws.com/cfy-custom-css/cfyads/imatges_blog/cloudcraft_-_diagrama_d_arquitectura_720.jpg'); " data-scrollax=" properties: { translateY: '-20%'}"></a>
+            <div class="text">
+              <h4 class="subheading">Arquitectura del sistema</h4>
+              <h2 class="heading"><a href="portfolio.html">Sistema robusto y flexible</a></h2>
+              <p>Nuestra arquitectura es robusta, tenemos un sitema flexible y modular que garantiza la modificabilidad, la personalización de nuestros servicios, entre otros.</p>
+              <p><a href="" class="btn btn-primary px-4">Ver</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="block-3 d-md-flex ftco-animate" data-scrollax-parent="true">
+          <a href="portfolio.html" class="image" style="background-image: url('https://static.diariofemenino.com/uploads/psicologia/217439-sonar-multitud.jpg'); " data-scrollax=" properties: { translateY: '-20%'}"></a>
+          <div class="text">
+            <h4 class="subheading">Servicios</h4>
+            <h2 class="heading"><a href="portfolio.html">Casos de Uso</a></h2>
+            <p>Nuestro sistema puede ser usado en diferentes ambientes: Centros comerciales, supermercados, tiendad para reconocer los flujos de personas e identifiar las ubicaciones y horas estrategicas en su negocio.  Así mismo, tenemos servicios para el análisis de riesgos en flujos grandes de personas en conjunto nuestros 3 modulos facilitan identificar y estimar posibles riesgos, estados de euforia, entre otros. </p>
+
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
 
 
 
-</body></html>
+    <section class="ftco-section ftco-counter" id="section-counter">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-5">
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+            <h2>Nuestros logros</h2>
+            <p>Proveemos información de calidad en tiempo real y a bajo costo. Inteligencia en la planeación de negocios con transito peatonal</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 text-center">
+              <div class="text">
+                <strong class="number" data-number="3000">0</strong>
+                <span>Soportamos un gran número de sensores.</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 text-center">
+              <div class="text">
+                <strong class="number" data-number="10">0</strong>
+                <span>Usuarios</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 text-center">
+              <div class="text">
+                <strong class="number" data-number="5000">0</strong>
+                <span>Promedio de peticiones al sistema</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">IoTransit.</h2>
+              <p>Inteligencia en el transito peatonal.</p>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-5">
+              <h2 class="ftco-heading-2">Quick Links</h2>
+              <ul class="list-unstyled">
+                <li><a href="" class="py-2 d-block">Home</a></li>
+                <li><a href="" class="py-2 d-block">Servicios</a></li>
+                <li><a href="" class="py-2 d-block">Portafolio</a></li>
+                <li><a href="" class="py-2 d-block">Contacto</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Contact Information</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" class="py-2 d-block">Carrera 1 # 18A-12</a></li>
+                <li><a href="#" class="py-2 d-block">li.forero@uniandes.edu.co</a></li>
+                <li><a href="#" class="py-2 d-block">zoyovanoj@email-wizard.com</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
+                <li class="ftco-animate"><a href="https://www.linkedin.com/company/35628861"><span class="icon-linkedin"></span></a></li>
+                <li class="ftco-animate"><a href="https://www.facebook.com/IoTransit-264389341183118/?modal=admin_todo_tour"><span class="icon-facebook"></span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+        <script src="{% static '/snipp/js/jquery.min.js' }"></script>
+        <script src="{% static '/snipp/js/jquery-migrate-3.0.1.min.js' %}"></script>
+        <script src="{% static '/snipp/js/popper.min.js' %}"></script>
+        <script src="{% static '/snipp/js/bootstrap.min.js' %}"></script>
+        <script src="{% static '/snipp/js/jquery.easing.1.3.js' %}"></script>
+        <script src="{% static '/snipp/js/jquery.waypoints.min.js' %}"></script>
+        <script src="{% static '/snipp/js/jquery.stellar.min.js' %}"></script>
+        <script src="{% static '/snipp/js/owl.carousel.min.js' %}"></script>
+        <script src="{% static '/snipp/js/jquery.magnific-popup.min.js' %}"></script>
+        <script src="{% static '/snipp/js/aos.js' %}"></script>
+        <script src="{% static '/snipp/js/jquery.animateNumber.min.js' %}"></script>
+        <script src="{% static '/snipp/js/bootstrap-datepicker.js' %}"></script>
+        <script src="{% static '/snipp/js/jquery.timepicker.min.js' %}"></script>
+        <script src="{% static '/snipp/js/particles.min.js' %}"></script>
+        <script src="{% static '/snipp/js/particle.js' %}"></script>
+        <script src="{% static '/snipp/js/scrollax.min.js' %}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+        <script src="{% static '/snipp/js/google-map.js' %}"></script>
+        <script src="{% static '/snipp/js/main.js' %}"></script>
+
+
+  </body>
+</html>

@@ -1,7 +1,7 @@
 {% extends 'basesenso0.html' %}
 {% block content %}
 
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto" class="border"></div>
+<div id="container3" style="min-width: 310px; height: 400px; margin: 0 auto" class="border"></div>
 
 
 <table class="table table-striped">
@@ -19,15 +19,12 @@
     </tr>
     {% endfor %}
 </table>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
     <script>
       _categories = {{categories|safe}};
       _values = {{values|safe}};
 
-      Highcharts.chart('container', {
+      Highcharts.chart('container3', {
     chart: {
               type: 'column'
     },
@@ -68,5 +65,19 @@
 
     }]
       });
+
+      var chart = $('#container3').highcharts();
+
+      function actualiza_contenido() {
+
+            chart.reflow();
+
+      }
+
+      setInterval("actualiza_contenido()", 10000);
+
+
+
       </script>
+      </div>
 {% endblock %}

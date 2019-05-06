@@ -23,6 +23,7 @@ urlpatterns = [
     url('^sensores/ver/(?P<pk>\d+)/$', csrf_exempt(views.voy), name='voy'),
     url('^sensores/predicciones', csrf_exempt(views.redNeuronal), name='redNeuronal'),
     url('^sensores/$', csrf_exempt(views.sensores), name='sensores'),
+    url('^video/$', csrf_exempt(views.emopy), name='emopy'),
 
     url(r'^$', views.index, name='index'),
 ]

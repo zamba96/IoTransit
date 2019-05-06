@@ -1,0 +1,187 @@
+
+
+{% load static  %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>IoTransit</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static '/snipp/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/aos.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/jquery.timepicker.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static '/snipp/css/style.css' %}">
+
+
+      <script src="{% static '/snipp/js/jquery.min.js' %}"></script>
+      <script src="{% static '/snipp/js/jquery-migrate-3.0.1.min.js' %}"></script>
+      <script src="{% static '/snipp/js/popper.min.js' %}"></script>
+      <script src="{% static '/snipp/js/bootstrap.min.js' %}"></script>
+      <script src="{% static '/snipp/js/jquery.easing.1.3.js' %}"></script>
+      <script src="{% static '/snipp/js/jquery.waypoints.min.js' %}"></script>
+      <script src="{% static '/snipp/js/jquery.stellar.min.js' %}"></script>
+      <script src="{% static '/snipp/js/owl.carousel.min.js' %}"></script>
+      <script src="{% static '/snipp/js/jquery.magnific-popup.min.js' %}"></script>
+      <script src="{% static '/snipp/js/aos.js' %}"></script>
+      <script src="{% static '/snipp/js/jquery.animateNumber.min.js' %}"></script>
+      <script src="{% static '/snipp/js/bootstrap-datepicker.js' %}"></script>
+      <script src="{% static '/snipp/js/jquery.timepicker.min.js' %}"></script>
+      <script src="{% static '/snipp/js/particles.min.js' %}"></script>
+      <script src="{% static '/snipp/js/particle.js' %}"></script>
+      <script src="{% static '/snipp/js/scrollax.min.js' %}"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+      <script src="{% static '/snipp/js/google-map.js' %}"></script>
+      <script src="{% static '/snipp/js/main.js' %}"></script>
+
+
+
+
+  </head>
+  <body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-dark" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">IoTransit.</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active"><a href="/live" class="nav-link">Home</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="portfolio.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Portafolio</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+                <a class="dropdown-item" href="/live/sensores">Prototipo Dashboard</a>
+                <a class="dropdown-item" href="/live/video">Prototipo EmoPy</a>
+              </div>
+          </li>
+          <li class="nav-item cta"><a href="" class="nav-link"><span>Contacto</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <!-- END nav -->
+
+
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row no-gutters justify-content-center mb-5 pb-5">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+            <span class="subheading">IA EmoPy</span>
+            <h2 class="mb-4">Reconocimiento facial</h2>
+            <p>El sistema de reconocimiento facil cuenta con un catalogo de emociones que puede usar para obtener los datos, y facilitar la planeación en su organización.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="block-3 d-md-flex ftco-animate" data-scrollax-parent="true">
+            <image src="{% static '/image_data/image.jpg' %}"></image>
+
+
+            <div class="text">
+              <h4 class="subheading">Reconocimiento facial</h4>
+              <h2 class="heading"><a href="">EmoPy</a></h2>
+              <p>Predicción: {{ estado }}</p>
+            </div>
+          </div>
+
+      </div>
+      </div>
+    </section>
+
+
+
+
+
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">IoTransit.</h2>
+              <p>Inteligencia en el transito peatonal.</p>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-5">
+              <h2 class="ftco-heading-2">Quick Links</h2>
+              <ul class="list-unstyled">
+                <li><a href="" class="py-2 d-block">Home</a></li>
+                <li><a href="" class="py-2 d-block">Servicios</a></li>
+                <li><a href="" class="py-2 d-block">Portafolio</a></li>
+                <li><a href="" class="py-2 d-block">Contacto</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Contact Information</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" class="py-2 d-block">Carrera 1 # 18A-12</a></li>
+                <li><a href="#" class="py-2 d-block">li.forero@uniandes.edu.co</a></li>
+                <li><a href="#" class="py-2 d-block">zoyovanoj@email-wizard.com</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
+                <li class="ftco-animate"><a href="https://www.linkedin.com/company/35628861"><span class="icon-linkedin"></span></a></li>
+                <li class="ftco-animate"><a href="https://www.facebook.com/IoTransit-264389341183118/?modal=admin_todo_tour"><span class="icon-facebook"></span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+        <script src="{% static '/snipp/js/jquery.min.js' }"></script>
+        <script src="{% static '/snipp/js/jquery-migrate-3.0.1.min.js' %}"></script>
+        <script src="{% static '/snipp/js/popper.min.js' %}"></script>
+        <script src="{% static '/snipp/js/bootstrap.min.js' %}"></script>
+        <script src="{% static '/snipp/js/jquery.easing.1.3.js' %}"></script>
+        <script src="{% static '/snipp/js/jquery.waypoints.min.js' %}"></script>
+        <script src="{% static '/snipp/js/jquery.stellar.min.js' %}"></script>
+        <script src="{% static '/snipp/js/owl.carousel.min.js' %}"></script>
+        <script src="{% static '/snipp/js/jquery.magnific-popup.min.js' %}"></script>
+        <script src="{% static '/snipp/js/aos.js' %}"></script>
+        <script src="{% static '/snipp/js/jquery.animateNumber.min.js' %}"></script>
+        <script src="{% static '/snipp/js/bootstrap-datepicker.js' %}"></script>
+        <script src="{% static '/snipp/js/jquery.timepicker.min.js' %}"></script>
+        <script src="{% static '/snipp/js/particles.min.js' %}"></script>
+        <script src="{% static '/snipp/js/particle.js' %}"></script>
+        <script src="{% static '/snipp/js/scrollax.min.js' %}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+        <script src="{% static '/snipp/js/google-map.js' %}"></script>
+        <script src="{% static '/snipp/js/main.js' %}"></script>
+
+
+  </body>
+</html>

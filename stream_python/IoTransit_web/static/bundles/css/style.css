@@ -211,7 +211,7 @@ nav ul.menu li ul li a:hover {
 	background:transparent;
 }
 
-/* Second, Third and more Tiers	
+/* Second, Third and more Tiers
  * We move the 2nd and 3rd etc tier dropdowns to the left
  * by the amount of the width of the first tier.
 */
@@ -575,7 +575,7 @@ h3.tittle {
     color: #fff;
     font-size: 16px;
     letter-spacing: 2px;
-    text-transform: capitalize;	
+    text-transform: capitalize;
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;
@@ -588,7 +588,7 @@ h3.tittle {
 /* middle */
 .middle-info {
     background:#db1478;
-    
+
 }
 .middle-info p{
 	width:70%;
@@ -791,7 +791,7 @@ color: #06D85F;
 }
 .agile-link-bnr1:hover {
     background: none;
-    border: 1px solid #db1478;	
+    border: 1px solid #db1478;
     color: #db1478;
 }
 /*-- features --*/
@@ -1386,7 +1386,7 @@ a.move-top.text-right{
         float: left;
     }
 
-    
+
 }
 
 @media screen and (max-width: 480px) {
