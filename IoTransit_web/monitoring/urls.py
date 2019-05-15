@@ -20,8 +20,6 @@ from . import views
 from django.views.decorators.csrf import csrf_exempt
 
 
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
     url('^sensores/ver/(?P<pk>\d+)/$', csrf_exempt(views.voy), name='voy'),
@@ -29,5 +27,5 @@ urlpatterns = [
     url('^sensores/$', csrf_exempt(views.sensores), name='sensores'),
     url('^video/$', csrf_exempt(views.emopy), name='emopy'),
 
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.index , name='index'),
 ]
