@@ -20,14 +20,13 @@ from . import views
 from django.views.decorators.csrf import csrf_exempt
 
 
+urlpatterns = patterns('',
 
-urlpatterns = [
-
-    path(r'^$', views.index , name='index'),
-    path(r'^sensores/ver/(?P<pk>\d+)/$', csrf_exempt(views.voy), name='voy'),
-    path(r'^sensores/predicciones', csrf_exempt(views.redNeuronal), name='redNeuronal'),
-    path(r'^sensores/$', csrf_exempt(views.sensores), name='sensores'),
-    path(r'^video/$', csrf_exempt(views.emopy), name='emopy'),
+    url(r'^$', views.index , name='index'),
+    url(r'^sensores/ver/(?P<pk>\d+)/$', csrf_exempt(views.voy), name='voy'),
+    url(r'^sensores/predicciones', csrf_exempt(views.redNeuronal), name='redNeuronal'),
+    url(r'^sensores/$', csrf_exempt(views.sensores), name='sensores'),
+    url(r'^video/$', csrf_exempt(views.emopy), name='emopy'),
 
 
-]
+)

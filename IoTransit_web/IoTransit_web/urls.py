@@ -16,9 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-import monitoring
 
-urlpatterns = [
-    path(r'admin/', admin.site.urls),
-    path(r'live/', include('monitoring.urls')),
-]
+urlpatterns = patterns('',
+    url(r'admin/', admin.site.urls),
+    url(r'live/', include('monitoring.urls')),
+)
