@@ -26,7 +26,7 @@ SECRET_KEY = 'no6%vferl8&^%n64d4puv^rwn+(0sr$guoo%8p^bs1vb$%dn@&'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+import sys
 try:
     if sys.argv[1] == 'runserver' or sys.argv[1] == 'runserver_plus':
         DEBUG_TOOLBAR_PATCH_SETTINGS = DEBUG
