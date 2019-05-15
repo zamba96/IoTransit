@@ -27,7 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
+try:
+    if sys.argv[1] == 'runserver' or sys.argv[1] == 'runserver_plus':
+        DEBUG_TOOLBAR_PATCH_SETTINGS = DEBUG
+    else:
+        DEBUG_TOOLBAR_PATCH_SETTINGS = False
+except IndexError:
+        DEBUG_TOOLBAR_PATCH_SETTINGS = False
 # Application definition
 
 INSTALLED_APPS = [
