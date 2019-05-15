@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from . import views
 from django.views.decorators.csrf import csrf_exempt
 
 
-urlpatterns = patterns('',
+
+urlpatterns = [
 
     url(r'^$', views.index , name='index'),
     url(r'^sensores/ver/(?P<pk>\d+)/$', csrf_exempt(views.voy), name='voy'),
@@ -29,4 +30,4 @@ urlpatterns = patterns('',
     url(r'^video/$', csrf_exempt(views.emopy), name='emopy'),
 
 
-)
+]
