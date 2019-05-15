@@ -12,6 +12,7 @@ from EmoPy.src.fermodel import FERModel
 from pkg_resources import resource_filename
 import os
 from PIL import Image, ImageDraw, ImageFont
+from keras import backend as K
 global map
 
 def index(request):
@@ -160,6 +161,7 @@ def emopy(request):
     cv2.imwrite(file,frame)
 
     frameString = model.predict(file)
+    m=frameString
     image = Image.open(file)
     draw = ImageDraw.Draw(image)
     # O bien /usr/share/fonts/truetype/ttf-dejavu/DejaVuSerif.ttf.
@@ -167,5 +169,6 @@ def emopy(request):
     color = 'rgb(255, 255, 255)'
     draw.text((50, 50), frameString, font=font, fill="black")
     image.save(file)
-    context = {'image': image, 'estado':frameString}
+    K.clear_session()
+    context = {'image': image, 'estado':m}
     return render(request, template, context=context)

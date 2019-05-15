@@ -25,7 +25,7 @@ SECRET_KEY = 'no6%vferl8&^%n64d4puv^rwn+(0sr$guoo%8p^bs1vb$%dn@&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'IoTransit_web.urls'
@@ -147,3 +148,4 @@ MEDIA_URL = '/static/media/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
+STATICFILES_STORAGE='whitenoise.storage.CompressedManifestStaticFilesStorage'
